@@ -16,214 +16,110 @@
       --muted: #6b6b80;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'DM Sans', sans-serif;
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
+    body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; min-height: 100vh; overflow-x: hidden; }
     body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background: 
-        radial-gradient(ellipse 80% 50% at 20% 10%, rgba(0,245,160,0.05) 0%, transparent 60%),
-        radial-gradient(ellipse 60% 40% at 80% 80%, rgba(0,180,255,0.05) 0%, transparent 60%);
-      pointer-events: none;
-      z-index: 0;
+      content: ''; position: fixed; inset: 0;
+      background: radial-gradient(ellipse 80% 50% at 20% 10%, rgba(0,245,160,0.05) 0%, transparent 60%), radial-gradient(ellipse 60% 40% at 80% 80%, rgba(0,180,255,0.05) 0%, transparent 60%);
+      pointer-events: none; z-index: 0;
     }
-    header {
-      position: sticky; top: 0; z-index: 100;
-      background: rgba(10,10,15,0.85);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border);
-      padding: 0 2rem;
-    }
-    .header-inner {
-      max-width: 1200px; margin: 0 auto;
-      height: 64px; display: flex;
-      align-items: center; justify-content: space-between;
-    }
-    .logo {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.6rem; letter-spacing: 2px;
-      background: linear-gradient(90deg, var(--accent), var(--accent2));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-    }
-    .yt-link {
-      display: flex; align-items: center; gap: 8px;
-      color: var(--muted); text-decoration: none;
-      font-size: 0.85rem; font-weight: 500; transition: color 0.2s;
-    }
+    header { position: sticky; top: 0; z-index: 100; background: rgba(10,10,15,0.85); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); padding: 0 2rem; }
+    .header-inner { max-width: 1200px; margin: 0 auto; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+    .logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; letter-spacing: 2px; background: linear-gradient(90deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .yt-link { display: flex; align-items: center; gap: 8px; color: var(--muted); text-decoration: none; font-size: 0.85rem; font-weight: 500; transition: color 0.2s; }
     .yt-link:hover { color: var(--accent); }
-    .yt-icon {
-      width: 28px; height: 28px; background: #ff0000;
-      border-radius: 6px; display: flex; align-items: center; justify-content: center;
-    }
+    .yt-icon { width: 28px; height: 28px; background: #ff0000; border-radius: 6px; display: flex; align-items: center; justify-content: center; }
     .yt-icon::after { content: '▶'; font-size: 10px; color: white; margin-left: 2px; }
-    .hero {
-      position: relative; z-index: 1;
-      max-width: 1200px; margin: 0 auto;
-      padding: 80px 2rem 60px;
-    }
-    .hero-tag {
-      display: inline-block;
-      background: rgba(0,245,160,0.1); border: 1px solid rgba(0,245,160,0.2);
-      color: var(--accent); font-size: 0.75rem; font-weight: 600;
-      letter-spacing: 2px; text-transform: uppercase;
-      padding: 6px 14px; border-radius: 100px; margin-bottom: 24px;
-    }
-    .hero h1 {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(3rem, 8vw, 6rem);
-      line-height: 0.95; letter-spacing: 2px; margin-bottom: 20px;
-    }
-    .hero h1 span {
-      background: linear-gradient(90deg, var(--accent), var(--accent2));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-    }
+    .hero { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; padding: 80px 2rem 60px; }
+    .hero-tag { display: inline-block; background: rgba(0,245,160,0.1); border: 1px solid rgba(0,245,160,0.2); color: var(--accent); font-size: 0.75rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; padding: 6px 14px; border-radius: 100px; margin-bottom: 24px; }
+    .hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem, 8vw, 6rem); line-height: 0.95; letter-spacing: 2px; margin-bottom: 20px; }
+    .hero h1 span { background: linear-gradient(90deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
     .hero p { color: var(--muted); font-size: 1.1rem; max-width: 500px; line-height: 1.6; }
-    .products-section {
-      position: relative; z-index: 1;
-      max-width: 1200px; margin: 0 auto; padding: 0 2rem 80px;
+
+    /* SEARCH & FILTER */
+    .controls { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; padding: 0 2rem 32px; display: flex; flex-direction: column; gap: 16px; }
+    .search-box { position: relative; }
+    .search-box input {
+      width: 100%; background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; color: var(--text); font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem; padding: 14px 16px 14px 46px; outline: none;
+      transition: border-color 0.2s;
     }
+    .search-box input:focus { border-color: var(--accent); }
+    .search-box input::placeholder { color: var(--muted); }
+    .search-icon { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: var(--muted); font-size: 1rem; }
+    .filter-btns { display: flex; flex-wrap: wrap; gap: 8px; }
+    .filter-btn {
+      background: var(--surface); border: 1px solid var(--border);
+      color: var(--muted); font-family: 'DM Sans', sans-serif; font-size: 0.8rem;
+      font-weight: 600; padding: 8px 16px; border-radius: 100px; cursor: pointer;
+      transition: all 0.2s;
+    }
+    .filter-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .filter-btn.active { background: rgba(0,245,160,0.1); border-color: var(--accent); color: var(--accent); }
+
+    .products-section { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; padding: 0 2rem 80px; }
     .section-header { display: flex; align-items: center; gap: 16px; margin-bottom: 40px; }
     .section-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; letter-spacing: 2px; }
     .section-line { flex: 1; height: 1px; background: linear-gradient(90deg, var(--border), transparent); }
     .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; }
-    .card {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: 16px; overflow: hidden; cursor: pointer;
-      transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
-      animation: fadeUp 0.5s ease both;
-    }
-    .card:hover {
-      transform: translateY(-6px);
-      border-color: rgba(0,245,160,0.3);
-      box-shadow: 0 20px 60px rgba(0,245,160,0.08);
-    }
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+
+    .no-results { text-align: center; color: var(--muted); padding: 60px 0; font-size: 1rem; display: none; }
+    .no-results.show { display: block; }
+
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; cursor: pointer; transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s; animation: fadeUp 0.5s ease both; }
+    .card:hover { transform: translateY(-6px); border-color: rgba(0,245,160,0.3); box-shadow: 0 20px 60px rgba(0,245,160,0.08); }
+    .card.hidden { display: none; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
     .card-thumb { position: relative; aspect-ratio: 16/9; overflow: hidden; background: #0d0d14; }
     .card-thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
     .card:hover .card-thumb img { transform: scale(1.05); }
-    .card-category {
-      position: absolute; top: 12px; left: 12px;
-      background: rgba(0,0,0,0.7); backdrop-filter: blur(8px);
-      border: 1px solid rgba(255,255,255,0.1);
-      color: var(--accent); font-size: 0.7rem; font-weight: 600;
-      letter-spacing: 1px; text-transform: uppercase;
-      padding: 4px 10px; border-radius: 100px;
-    }
+    .card-category { position: absolute; top: 12px; left: 12px; background: rgba(0,0,0,0.7); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.1); color: var(--accent); font-size: 0.7rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; padding: 4px 10px; border-radius: 100px; }
+    .card-rating { position: absolute; top: 12px; right: 12px; background: rgba(0,0,0,0.7); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.1); padding: 4px 10px; border-radius: 100px; font-size: 0.75rem; color: #ffd700; }
     .card-body { padding: 20px; }
     .card-name { font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; letter-spacing: 1px; margin-bottom: 8px; }
     .card-desc { color: var(--muted); font-size: 0.85rem; line-height: 1.5; margin-bottom: 16px; }
     .card-spec { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px; }
-    .spec-tag {
-      background: rgba(0,245,160,0.06); border: 1px solid rgba(0,245,160,0.15);
-      color: var(--accent); font-size: 0.7rem; font-weight: 500;
-      padding: 3px 10px; border-radius: 100px;
-    }
+    .spec-tag { background: rgba(0,245,160,0.06); border: 1px solid rgba(0,245,160,0.15); color: var(--accent); font-size: 0.7rem; font-weight: 500; padding: 3px 10px; border-radius: 100px; }
     .card-actions { display: flex; gap: 10px; }
-    .btn-watch {
-      flex: 1; display: flex; align-items: center; justify-content: center; gap: 6px;
-      background: rgba(255,0,0,0.1); border: 1px solid rgba(255,0,0,0.2);
-      color: #ff4444; text-decoration: none; font-size: 0.8rem; font-weight: 600;
-      padding: 10px; border-radius: 10px; transition: all 0.2s;
-    }
+    .btn-watch { flex: 1; display: flex; align-items: center; justify-content: center; gap: 6px; background: rgba(255,0,0,0.1); border: 1px solid rgba(255,0,0,0.2); color: #ff4444; text-decoration: none; font-size: 0.8rem; font-weight: 600; padding: 10px; border-radius: 10px; transition: all 0.2s; }
     .btn-watch:hover { background: rgba(255,0,0,0.2); border-color: rgba(255,0,0,0.4); }
-    .btn-buy {
-      flex: 1; display: flex; align-items: center; justify-content: center; gap: 6px;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      color: #000; text-decoration: none; font-size: 0.8rem; font-weight: 700;
-      padding: 10px; border-radius: 10px; transition: opacity 0.2s;
-    }
+    .btn-buy { flex: 1; display: flex; align-items: center; justify-content: center; gap: 6px; background: linear-gradient(135deg, var(--accent), var(--accent2)); color: #000; text-decoration: none; font-size: 0.8rem; font-weight: 700; padding: 10px; border-radius: 10px; transition: opacity 0.2s; }
     .btn-buy:hover { opacity: 0.9; }
-    .modal-overlay {
-      position: fixed; inset: 0;
-      background: rgba(0,0,0,0.85); backdrop-filter: blur(10px);
-      z-index: 200; display: flex; align-items: center; justify-content: center;
-      padding: 20px; opacity: 0; pointer-events: none; transition: opacity 0.3s;
-    }
+
+    /* MODAL */
+    .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(10px); z-index: 200; display: flex; align-items: center; justify-content: center; padding: 20px; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
     .modal-overlay.active { opacity: 1; pointer-events: all; }
-    .modal {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: 20px; width: 100%; max-width: 680px; max-height: 90vh;
-      overflow-y: auto; transform: translateY(30px) scale(0.97);
-      transition: transform 0.3s ease;
-      scrollbar-width: thin; scrollbar-color: var(--border) transparent;
-    }
+    .modal { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; width: 100%; max-width: 680px; max-height: 90vh; overflow-y: auto; transform: translateY(30px) scale(0.97); transition: transform 0.3s ease; scrollbar-width: thin; scrollbar-color: var(--border) transparent; }
     .modal-overlay.active .modal { transform: translateY(0) scale(1); }
     .modal-thumb { position: relative; aspect-ratio: 16/9; overflow: hidden; border-radius: 20px 20px 0 0; }
     .modal-thumb img { width: 100%; height: 100%; object-fit: cover; }
-    .modal-thumb-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(to bottom, transparent 50%, var(--surface));
-    }
-    .modal-close {
-      position: absolute; top: 16px; right: 16px;
-      width: 36px; height: 36px;
-      background: rgba(0,0,0,0.6); backdrop-filter: blur(8px);
-      border: 1px solid rgba(255,255,255,0.1); border-radius: 50%;
-      color: white; font-size: 18px; cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
-      transition: background 0.2s; z-index: 10;
-    }
+    .modal-thumb-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 50%, var(--surface)); }
+    .modal-close { position: absolute; top: 16px; right: 16px; width: 36px; height: 36px; background: rgba(0,0,0,0.6); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.1); border-radius: 50%; color: white; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s; z-index: 10; }
     .modal-close:hover { background: rgba(255,0,0,0.5); }
     .modal-body { padding: 24px; }
-    .modal-category {
-      display: inline-block;
-      background: rgba(0,245,160,0.1); border: 1px solid rgba(0,245,160,0.2);
-      color: var(--accent); font-size: 0.7rem; font-weight: 600;
-      letter-spacing: 1px; text-transform: uppercase;
-      padding: 4px 12px; border-radius: 100px; margin-bottom: 12px;
-    }
+    .modal-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 12px; }
+    .modal-category { display: inline-block; background: rgba(0,245,160,0.1); border: 1px solid rgba(0,245,160,0.2); color: var(--accent); font-size: 0.7rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; padding: 4px 12px; border-radius: 100px; }
+    .modal-stars { font-size: 1.2rem; color: #ffd700; letter-spacing: 2px; }
     .modal-name { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; letter-spacing: 2px; margin-bottom: 10px; }
     .modal-desc { color: var(--muted); font-size: 0.95rem; line-height: 1.6; margin-bottom: 24px; }
-    .modal-specs-title {
-      font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem;
-      letter-spacing: 2px; color: var(--accent); margin-bottom: 14px;
-    }
-    .modal-specs {
-      background: rgba(0,0,0,0.3); border: 1px solid var(--border);
-      border-radius: 12px; overflow: hidden; margin-bottom: 24px;
-    }
-    .spec-row {
-      display: flex; align-items: flex-start; gap: 12px;
-      padding: 12px 16px; border-bottom: 1px solid var(--border); transition: background 0.2s;
-    }
+    .modal-specs-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; letter-spacing: 2px; color: var(--accent); margin-bottom: 14px; }
+    .modal-specs { background: rgba(0,0,0,0.3); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-bottom: 24px; }
+    .spec-row { display: flex; align-items: flex-start; gap: 12px; padding: 12px 16px; border-bottom: 1px solid var(--border); transition: background 0.2s; }
     .spec-row:last-child { border-bottom: none; }
     .spec-row:hover { background: rgba(0,245,160,0.03); }
     .spec-key { color: var(--muted); font-size: 0.82rem; min-width: 160px; flex-shrink: 0; }
     .spec-val { color: var(--text); font-size: 0.82rem; font-weight: 500; line-height: 1.4; }
     .modal-actions { display: flex; gap: 12px; }
-    .modal-btn-watch {
-      flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px;
-      background: rgba(255,0,0,0.1); border: 1px solid rgba(255,0,0,0.2);
-      color: #ff4444; text-decoration: none; font-size: 0.9rem; font-weight: 600;
-      padding: 14px; border-radius: 12px; transition: all 0.2s;
-    }
+    .modal-btn-watch { flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px; background: rgba(255,0,0,0.1); border: 1px solid rgba(255,0,0,0.2); color: #ff4444; text-decoration: none; font-size: 0.9rem; font-weight: 600; padding: 14px; border-radius: 12px; transition: all 0.2s; }
     .modal-btn-watch:hover { background: rgba(255,0,0,0.2); }
-    .modal-btn-buy {
-      flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      color: #000; text-decoration: none; font-size: 0.9rem; font-weight: 700;
-      padding: 14px; border-radius: 12px; transition: opacity 0.2s;
-    }
+    .modal-btn-buy { flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px; background: linear-gradient(135deg, var(--accent), var(--accent2)); color: #000; text-decoration: none; font-size: 0.9rem; font-weight: 700; padding: 14px; border-radius: 12px; transition: opacity 0.2s; }
     .modal-btn-buy:hover { opacity: 0.9; }
-    footer {
-      position: relative; z-index: 1;
-      border-top: 1px solid var(--border);
-      padding: 32px 2rem; text-align: center;
-      color: var(--muted); font-size: 0.85rem;
-    }
+
+    footer { position: relative; z-index: 1; border-top: 1px solid var(--border); padding: 32px 2rem; text-align: center; color: var(--muted); font-size: 0.85rem; }
     footer a { color: var(--accent); text-decoration: none; }
     @media (max-width: 600px) {
       .hero { padding: 50px 1.5rem 40px; }
-      .products-section { padding: 0 1.5rem 60px; }
+      .controls, .products-section { padding-left: 1.5rem; padding-right: 1.5rem; }
       .modal-actions { flex-direction: column; }
       .spec-key { min-width: 110px; }
     }
@@ -247,6 +143,22 @@
   <p>Kanalımda incelediğim ürünleri, teknik detaylarını ve nereden satın alabileceğinizi burada bulabilirsiniz.</p>
 </section>
 
+<div class="controls">
+  <div class="search-box">
+    <span class="search-icon">🔍</span>
+    <input type="text" id="searchInput" placeholder="Ürün ara...">
+  </div>
+  <div class="filter-btns" id="filterBtns">
+    <button class="filter-btn active" data-cat="Tümü">Tümü</button>
+    <button class="filter-btn" data-cat="Mouse">Mouse</button>
+    <button class="filter-btn" data-cat="Kulaklık">Kulaklık</button>
+    <button class="filter-btn" data-cat="Gamepad">Gamepad</button>
+    <button class="filter-btn" data-cat="Konsol">Konsol</button>
+    <button class="filter-btn" data-cat="Klavye">Klavye</button>
+    <button class="filter-btn" data-cat="Webcam">Webcam</button>
+  </div>
+</div>
+
 <section class="products-section">
   <div class="section-header">
     <div class="section-title">Tüm Ürünler</div>
@@ -254,6 +166,7 @@
     <span style="color: var(--muted); font-size: 0.85rem;" id="productCount"></span>
   </div>
   <div class="products-grid" id="grid"></div>
+  <div class="no-results" id="noResults">😔 Aradığın ürün bulunamadı.</div>
 </section>
 
 <footer>
@@ -268,7 +181,10 @@
       <button class="modal-close" id="modalClose">✕</button>
     </div>
     <div class="modal-body">
-      <div class="modal-category" id="modalCategory"></div>
+      <div class="modal-header">
+        <div class="modal-category" id="modalCategory"></div>
+        <div class="modal-stars" id="modalStars"></div>
+      </div>
       <div class="modal-name" id="modalName"></div>
       <div class="modal-desc" id="modalDesc"></div>
       <div class="modal-specs-title">TEKNİK ÖZELLİKLER</div>
@@ -286,221 +202,134 @@ const products = [
   {
     name: "Throne Tactical Hero Gamepad",
     desc: "Uygun fiyatlı ama performanslı bir gamepad arıyorsanız, bu ürün tam size göre olabilir.",
-    category: "Gamepad",
+    category: "Gamepad", rating: 4.5,
     specs: ["Hall Effect", "Bluetooth 5.0", "RGB", "1000 mAh"],
     video: "https://www.youtube.com/watch?v=y7bcYEMTmVc",
     buy: "https://www.trendyol.com/hepta-collection/throne-tactical-hero-2-4-ghz-bt-cift-kablosuz-mod-rgb-alt-ve-arka-4-makro-tusu-titresimli-3-p-1097037531",
     thumb: "https://img.youtube.com/vi/y7bcYEMTmVc/maxresdefault.jpg",
-    details: [
-      ["Teknoloji", "Hall Effect Joystick ve Tetikler (Stick drift yapmaz, aşınmaz)"],
-      ["Bağlantı", "Bluetooth 5.0, 2.4GHz Dongle ve Type-C Kablolu"],
-      ["Uyumluluk", "PC, Android, iOS, Nintendo Switch, macOS ve Tesla"],
-      ["Kontrol", "4 adet programlanabilir makro tuşu ve 3 seviyeli Turbo modu"],
-      ["Batarya", "1000 mAh"],
-      ["Donanım", "6 eksenli jiroskop ve ayarlanabilir tetik kilitleri"],
-      ["Ekstralar", "RGB aydınlatma, değiştirilebilir D-pad ve analog başlıkları"]
-    ]
+    details: [["Teknoloji","Hall Effect Joystick ve Tetikler (Stick drift yapmaz, aşınmaz)"],["Bağlantı","Bluetooth 5.0, 2.4GHz Dongle ve Type-C Kablolu"],["Uyumluluk","PC, Android, iOS, Nintendo Switch, macOS ve Tesla"],["Kontrol","4 adet programlanabilir makro tuşu ve 3 seviyeli Turbo modu"],["Batarya","1000 mAh"],["Donanım","6 eksenli jiroskop ve ayarlanabilir tetik kilitleri"],["Ekstralar","RGB aydınlatma, değiştirilebilir D-pad ve analog başlıkları"]]
   },
   {
     name: "HAVİT TW970",
     desc: "Havit TW970 almayı düşünüyorsan, bu inceleme tam sana göre!",
-    category: "Kulaklık",
+    category: "Kulaklık", rating: 4,
     specs: ["TWS", "RGB", "BT 5.3", "400 mAh"],
     video: "https://www.youtube.com/watch?v=0NwrQQwGfco",
     buy: "https://www.havitstore.com.tr/havit-tw970-tws-rgb-gaming-bluetooth-kulaklik-beyaz",
     thumb: "https://raw.githubusercontent.com/tunahancod-eng/chaplin-tech/main/havit%20tw970.png",
-    details: [
-      ["Model Kodu", "TW970"],
-      ["Kulaklık Türü", "TWS (True Wireless Stereo)"],
-      ["Aktif Gürültü Önleme", "Yok"],
-      ["Bluetooth Versiyon", "V5.3"],
-      ["Konuşma Süresi", "6 Saat"],
-      ["Şarj Süresi", "2 Saat"],
-      ["Çekim Mesafesi", "10 Metre"],
-      ["Batarya", "400 mAh"]
-    ]
+    details: [["Model Kodu","TW970"],["Kulaklık Türü","TWS (True Wireless Stereo)"],["Aktif Gürültü Önleme","Yok"],["Bluetooth Versiyon","V5.3"],["Konuşma Süresi","6 Saat"],["Şarj Süresi","2 Saat"],["Çekim Mesafesi","10 Metre"],["Batarya","400 mAh"]]
   },
   {
     name: "Attack Shark X3 Pro",
     desc: "FPS Canavarı Mouse! Yüksek performanslı, 8K wireless teknolojisiyle donatılmış oyuncu faresi.",
-    category: "Mouse",
+    category: "Mouse", rating: 5,
     specs: ["PAW3395", "8000 Hz", "8K Wireless", "59g"],
     video: "https://www.youtube.com/watch?v=J7Ro_x8lR38",
     buy: "https://meyergaming.com/attack-shark-x3-pro-8k-wireless-mouse",
     thumb: "https://raw.githubusercontent.com/tunahancod-eng/chaplin-tech/main/Attack_Shark_X3_Pro.jpg",
-    details: [
-      ["Sensör", "PixArt PAW3395"],
-      ["DPI", "26.000 DPI – 6 kademeli ayar"],
-      ["Bağlantı", "2.4 GHz Kablosuz + Bluetooth + USB-C"],
-      ["Polling Rate", "8000 Hz"],
-      ["Ağırlık", "59 gram"],
-      ["Tuş Sayısı", "7 adet – makro desteği"],
-      ["Switch", "HaiLH GM8.0 – 80 milyon tıklama ömrü"],
-      ["Hız / İzleme", "650 IPS – 50G hızlanma"],
-      ["Ayaklar", "PTFE Skatez"],
-      ["Pil", "Dahili şarjlı, 200 saate kadar kullanım, 2-3 saatte tam dolum"]
-    ]
+    details: [["Sensör","PixArt PAW3395"],["DPI","26.000 DPI – 6 kademeli ayar"],["Bağlantı","2.4 GHz Kablosuz + Bluetooth + USB-C"],["Polling Rate","8000 Hz"],["Ağırlık","59 gram"],["Tuş Sayısı","7 adet – makro desteği"],["Switch","HaiLH GM8.0 – 80 milyon tıklama ömrü"],["Hız / İzleme","650 IPS – 50G hızlanma"],["Ayaklar","PTFE Skatez"],["Pil","Dahili şarjlı, 200 saate kadar kullanım, 2-3 saatte tam dolum"]]
   },
   {
     name: "Attack Shark X1",
     desc: "40.000 DPI hassasiyete sahip PAW3395 Pro sensörü ile üst düzey oyun performansı.",
-    category: "Mouse",
+    category: "Mouse", rating: 5,
     specs: ["PAW3395 Pro", "40K DPI", "Tri-mode", "49g"],
     video: "https://www.youtube.com/watch?v=fo0d4tgBk4E",
     buy: "https://meyergaming.com/attack-shark-x1-kablosuz-gaming-mouse?Renk=Beyaz",
     thumb: "https://img.youtube.com/vi/fo0d4tgBk4E/maxresdefault.jpg",
-    details: [
-      ["Sensör", "PixArt PAW3395PRO"],
-      ["DPI Aralığı", "50 – 40.000 (6 kademe ayarlanabilir)"],
-      ["Bağlantı", "Tri-mode — 2.4 GHz kablosuz / Bluetooth / USB-C kablolu"],
-      ["Polling Rate", "125–1000 Hz (1 ms tepki)"],
-      ["Switch", "Omron optik mikroswitch – 100 milyon tıklama ömrü"],
-      ["Ağırlık", "49 g ± 3 g (ultra hafif)"],
-      ["Hız & Performans", "700 IPS izleme hızı & 60G hızlanma"],
-      ["Boyutlar", "121.8 × 61.2 × 38 mm"],
-      ["Batarya", "250 mAh"]
-    ]
+    details: [["Sensör","PixArt PAW3395PRO"],["DPI Aralığı","50 – 40.000 (6 kademe ayarlanabilir)"],["Bağlantı","Tri-mode — 2.4 GHz kablosuz / Bluetooth / USB-C kablolu"],["Polling Rate","125–1000 Hz (1 ms tepki)"],["Switch","Omron optik mikroswitch – 100 milyon tıklama ömrü"],["Ağırlık","49 g ± 3 g (ultra hafif)"],["Hız & Performans","700 IPS izleme hızı & 60G hızlanma"],["Boyutlar","121.8 × 61.2 × 38 mm"],["Batarya","250 mAh"]]
   },
   {
     name: "DataFrog R36S",
     desc: "Retro oyun tutkunları için uygun fiyatlı, taşınabilir el konsolu. Onlarca emülatör desteğiyle klasik oyunları yaşat!",
-    category: "Konsol",
+    category: "Konsol", rating: 4,
     specs: ["ArkOS", "3.5\" IPS", "3000 mAh", "64GB"],
     video: "https://youtu.be/z-o8_CNHj8k",
     buy: "https://datafrogx.com/tr/products/r36s-el-oyun-konsolu",
     thumb: "https://img.youtube.com/vi/z-o8_CNHj8k/hqdefault.jpg",
-    details: [
-      ["Ekran", "3.5\" IPS Panel, 640×480 çözünürlük"],
-      ["İşlemci (CPU)", "Rockchip RK3326, 4 Çekirdek (Quad-Core)"],
-      ["Grafik (GPU)", "Mali-G31"],
-      ["RAM", "1 GB DDR3"],
-      ["İşletim Sistemi", "Linux tabanlı (ArkOS)"],
-      ["Depolama", "microSD kart, 64 GB / 128 GB (değiştirilebilir)"],
-      ["Emülasyon Desteği", "NES, SNES, GB, GBA, PS1, N64, Sega"],
-      ["Batarya", "3000–3500 mAh, Ortalama 6–7 saat"],
-      ["Ses & Bağlantı", "Dahili hoparlör, 3.5 mm kulaklık, USB-C şarj"],
-      ["Kontroller", "Çift analog joystick, D-pad + L/R tuşları"]
-    ]
+    details: [["Ekran","3.5\" IPS Panel, 640×480 çözünürlük"],["İşlemci (CPU)","Rockchip RK3326, 4 Çekirdek (Quad-Core)"],["Grafik (GPU)","Mali-G31"],["RAM","1 GB DDR3"],["İşletim Sistemi","Linux tabanlı (ArkOS)"],["Depolama","microSD kart, 64 GB / 128 GB (değiştirilebilir)"],["Emülasyon Desteği","NES, SNES, GB, GBA, PS1, N64, Sega"],["Batarya","3000–3500 mAh, Ortalama 6–7 saat"],["Ses & Bağlantı","Dahili hoparlör, 3.5 mm kulaklık, USB-C şarj"],["Kontroller","Çift analog joystick, D-pad + L/R tuşları"]]
   },
   {
     name: "FIFINE X3",
     desc: "ANC özellikli, uzun pil ömürlü kablosuz kulaklık. Oyun ve müzik modlarıyla her ortama uyum sağlar.",
-    category: "Kulaklık",
+    category: "Kulaklık", rating: 4.5,
     specs: ["ANC", "BT 5.3", "600 mAh", "65 saat"],
     video: "https://youtu.be/hVDdYfKAvDE",
     buy: "https://www.elitmuzik.com.tr/fifine-x3-kablosuz-anc-kulak-ustu-kulaklik",
     thumb: "https://img.youtube.com/vi/hVDdYfKAvDE/maxresdefault.jpg",
-    details: [
-      ["Model", "X3"],
-      ["Bağlantı Tipi", "Kablosuz (Bluetooth 5.3) / 3.5 mm kablolu"],
-      ["Bluetooth Profilleri", "A2DP / AVRCP / HFP / HSP"],
-      ["Bluetooth Menzili", "~10 m (line of sight)"],
-      ["Sürücü Çapı", "40 mm Dinamik"],
-      ["Frekans Aralığı", "20 Hz – 20 kHz"],
-      ["Mikrofon", "Dahili + Çıkarılabilir Boom Mic (ENC)"],
-      ["Aktif Gürültü Önleme", "Var"],
-      ["Transparency Modu", "Var"],
-      ["Oyun / Bass Modları", "Var (Game Mode, Bass Mode)"],
-      ["Pil Kapasitesi", "600 mAh"],
-      ["Çalma Süresi (ANC açık)", "~30–33 saat"],
-      ["Çalma Süresi (ANC kapalı)", "~35–65 saat"],
-      ["Şarj Süresi", "~2.5 saat"],
-      ["Ağırlık", "~300 g"]
-    ]
+    details: [["Model","X3"],["Bağlantı Tipi","Kablosuz (Bluetooth 5.3) / 3.5 mm kablolu"],["Bluetooth Profilleri","A2DP / AVRCP / HFP / HSP"],["Bluetooth Menzili","~10 m (line of sight)"],["Sürücü Çapı","40 mm Dinamik"],["Frekans Aralığı","20 Hz – 20 kHz"],["Mikrofon","Dahili + Çıkarılabilir Boom Mic (ENC)"],["Aktif Gürültü Önleme","Var"],["Transparency Modu","Var"],["Oyun / Bass Modları","Var (Game Mode, Bass Mode)"],["Pil Kapasitesi","600 mAh"],["Çalma Süresi (ANC açık)","~30–33 saat"],["Çalma Süresi (ANC kapalı)","~35–65 saat"],["Şarj Süresi","~2.5 saat"],["Ağırlık","~300 g"]]
   },
   {
     name: "GameSir X5S",
     desc: "Mobil oyunculara özel Hall Effect teknolojili, drift önleyici kablosuz gamepad. Android, iOS ve PC uyumlu.",
-    category: "Gamepad",
+    category: "Gamepad", rating: 4.5,
     specs: ["Hall Effect", "2.4 GHz", "840 mAh", "Tri-mode"],
     video: "https://youtu.be/m21iNM83gbc",
     buy: "https://gamesir.com/collections/all-products-1/products/gamesir-x5s-wireless-mobile-game-controller",
     thumb: "https://img.youtube.com/vi/m21iNM83gbc/hqdefault.jpg",
-    details: [
-      ["Bağlantı", "Bluetooth / USB-C / 2.4 GHz"],
-      ["Uyumluluk", "Android, iOS, PC, Nintendo Switch"],
-      ["Joystick & Tetik", "Hall Effect (Drift önleyici)"],
-      ["Titreşim & Sensör", "Çift HD titreşim + 6 eksen jiroskop"],
-      ["Batarya", "840 mAh toplam"],
-      ["Cihaz Uyumu", "105 – 213 mm"]
-    ]
+    details: [["Bağlantı","Bluetooth / USB-C / 2.4 GHz"],["Uyumluluk","Android, iOS, PC, Nintendo Switch"],["Joystick & Tetik","Hall Effect (Drift önleyici)"],["Titreşim & Sensör","Çift HD titreşim + 6 eksen jiroskop"],["Batarya","840 mAh toplam"],["Cihaz Uyumu","105 – 213 mm"]]
   },
   {
     name: "FIFINE AmpliGame H9",
     desc: "7.1 Sanal Surround ses ve RGB aydınlatmalı oyuncu kulaklığı. Yayıncılar ve oyuncular için ideal.",
-    category: "Kulaklık",
+    category: "Kulaklık", rating: 4,
     specs: ["7.1 Surround", "USB", "50mm", "RGB"],
     video: "https://youtu.be/_BcauY_nZrY",
     buy: "https://www.elitmuzik.com.tr/fifine-ampligame-h9-mikrofonlu-71-oyuncu-bilgisayar-yayinci-rgb-kulaklik",
     thumb: "https://img.youtube.com/vi/_BcauY_nZrY/maxresdefault.jpg",
-    details: [
-      ["Bağlantı Tipi", "3.5mm ve USB (dahil edilen USB ses kartı ile)"],
-      ["Ses Teknolojisi", "Sanal 7.1 Surround (USB ile)"],
-      ["Kulaklık Sürücüsü", "50mm Dinamik"],
-      ["Frekans Tepkisi", "20 Hz - 20kHz"],
-      ["Hassasiyet", "95dB"],
-      ["Mikrofon Tipi", "Condenser"],
-      ["Mikrofon Polar Desen", "Çok Yönlü (Omni-directional)"],
-      ["Ağırlık", "260g (kulaklık)"]
-    ]
+    details: [["Bağlantı Tipi","3.5mm ve USB (dahil edilen USB ses kartı ile)"],["Ses Teknolojisi","Sanal 7.1 Surround (USB ile)"],["Kulaklık Sürücüsü","50mm Dinamik"],["Frekans Tepkisi","20 Hz - 20kHz"],["Hassasiyet","95dB"],["Mikrofon Tipi","Condenser"],["Mikrofon Polar Desen","Çok Yönlü (Omni-directional)"],["Ağırlık","260g (kulaklık)"]]
   },
   {
     name: "CLAW'S Spectrum K1",
     desc: "RGB aydınlatmalı, ergonomik tasarımlı 94 tuşlu gaming klavye. Sessiz ve özelleştirilebilir ekran tuşlarıyla dikkat çekiyor.",
-    category: "Klavye",
+    category: "Klavye", rating: 4,
     specs: ["94 Tuş", "RGB", "USB-A", "QWERTY"],
     video: "https://www.youtube.com/watch?v=nodQpEr-eho",
     buy: "https://www.hepsiburada.com/claw-s-spectrum-k1-fonksiyonel-membran-94-tuslu-spectrum-rgb-modlu-gaming-klavye-pm-HBC0000AB4T6H",
     thumb: "https://img.youtube.com/vi/nodQpEr-eho/maxresdefault.jpg",
-    details: [
-      ["Uyumlu Cihazlar", "Masaüstü Bilgisayar, Dizüstü Bilgisayar, Gaming Console"],
-      ["Bağlantı Teknolojisi", "USB-A"],
-      ["Özellikler", "Arkadan Aydınlatmalı, Ergonomik, Sessiz, Özelleştirilebilir Ekran Tuşları"],
-      ["Anahtar Sayısı", "94"],
-      ["Aydınlatma", "RGB"],
-      ["Dil", "Türkçe"],
-      ["Güç Kaynağı", "Kablolu Elektrikli"],
-      ["Klavye Düzeni", "QWERTY"],
-      ["El Oryantasyonu", "Çift El"]
-    ]
+    details: [["Uyumlu Cihazlar","Masaüstü Bilgisayar, Dizüstü Bilgisayar, Gaming Console"],["Bağlantı Teknolojisi","USB-A"],["Özellikler","Arkadan Aydınlatmalı, Ergonomik, Sessiz, Özelleştirilebilir Ekran Tuşları"],["Anahtar Sayısı","94"],["Aydınlatma","RGB"],["Dil","Türkçe"],["Güç Kaynağı","Kablolu Elektrikli"],["Klavye Düzeni","QWERTY"],["El Oryantasyonu","Çift El"]]
   },
   {
     name: "Konftel Cam10",
     desc: "1080p Full HD, otomatik odaklamalı webcam. Çift mikrofon ve gizlilik kapağıyla profesyonel video görüşmeleri için ideal.",
-    category: "Webcam",
+    category: "Webcam", rating: 4,
     specs: ["1080p", "Autofocus", "4x Zoom", "USB 2.0"],
     video: "https://youtu.be/xePEzNkQlK4",
     buy: "https://www.trendyol.com/genel-markalar/cam10-ptz-1080p-full-hd-usb-autofokus-4x-dijital-yakinlastirmali-cift-mikrofonlu-webcam-pc-kamera-p-869770643",
     thumb: "https://img.youtube.com/vi/xePEzNkQlK4/maxresdefault.jpg",
-    details: [
-      ["Görüntü Kalitesi", "1080p Full HD (1920x1080) @ 30fps"],
-      ["Görüş Açısı (FOV)", "90° geniş açı"],
-      ["Odaklama", "Otomatik Odaklama (Autofocus)"],
-      ["Yakınlaştırma", "4x Dijital Zoom"],
-      ["Mikrofon", "Çift mikrofon, gürültü azaltma teknolojisi (Noise Reduction)"],
-      ["Kamera Sensörü", "1/2.8\" CMOS"],
-      ["Bağlantı Tipi", "USB 2.0 (USB-A)"],
-      ["Gizlilik Özelliği", "Dahili mekanik gizlilik kapağı (Shutter)"],
-      ["Montaj", "Ayarlanabilir klips (Ekran/Tripod uyumlu)"],
-      ["Uyumlu İşletim Sistemleri", "Windows 7/8/10, Mac OS X, Linux, Android"],
-      ["Kablo Uzunluğu", "155 cm"],
-      ["Boyutlar/Ağırlık", "118 mm x 37.2 mm x 30.8 mm / 165 g"]
-    ]
+    details: [["Görüntü Kalitesi","1080p Full HD (1920x1080) @ 30fps"],["Görüş Açısı (FOV)","90° geniş açı"],["Odaklama","Otomatik Odaklama (Autofocus)"],["Yakınlaştırma","4x Dijital Zoom"],["Mikrofon","Çift mikrofon, gürültü azaltma teknolojisi (Noise Reduction)"],["Kamera Sensörü","1/2.8\" CMOS"],["Bağlantı Tipi","USB 2.0 (USB-A)"],["Gizlilik Özelliği","Dahili mekanik gizlilik kapağı (Shutter)"],["Montaj","Ayarlanabilir klips (Ekran/Tripod uyumlu)"],["Uyumlu İşletim Sistemleri","Windows 7/8/10, Mac OS X, Linux, Android"],["Kablo Uzunluğu","155 cm"],["Boyutlar/Ağırlık","118 mm x 37.2 mm x 30.8 mm / 165 g"]]
   }
 ];
 
+function starsHtml(rating) {
+  const full = Math.floor(rating);
+  const half = rating % 1 >= 0.5;
+  let s = '★'.repeat(full);
+  if (half) s += '½';
+  return s;
+}
+
 const grid = document.getElementById('grid');
 const overlay = document.getElementById('modalOverlay');
-document.getElementById('productCount').textContent = `${products.length} ürün`;
+const searchInput = document.getElementById('searchInput');
+const filterBtns = document.querySelectorAll('.filter-btn');
+const noResults = document.getElementById('noResults');
+const productCount = document.getElementById('productCount');
+
+let activeCategory = 'Tümü';
+let searchQuery = '';
 
 products.forEach((p, i) => {
   const card = document.createElement('div');
   card.className = 'card';
   card.style.animationDelay = `${(i+1)*0.08}s`;
+  card.dataset.category = p.category;
+  card.dataset.name = p.name.toLowerCase();
   card.innerHTML = `
     <div class="card-thumb">
       <img src="${p.thumb}" alt="${p.name}" onerror="this.style.display='none'">
       <div class="card-category">${p.category}</div>
+      <div class="card-rating">${starsHtml(p.rating)} ${p.rating}</div>
     </div>
     <div class="card-body">
       <div class="card-name">${p.name}</div>
@@ -516,18 +345,49 @@ products.forEach((p, i) => {
   grid.appendChild(card);
 });
 
+function filterCards() {
+  const cards = document.querySelectorAll('.card');
+  let visible = 0;
+  cards.forEach(card => {
+    const catMatch = activeCategory === 'Tümü' || card.dataset.category === activeCategory;
+    const searchMatch = card.dataset.name.includes(searchQuery);
+    if (catMatch && searchMatch) {
+      card.classList.remove('hidden');
+      visible++;
+    } else {
+      card.classList.add('hidden');
+    }
+  });
+  productCount.textContent = `${visible} ürün`;
+  noResults.classList.toggle('show', visible === 0);
+}
+
+filterBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    filterBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    activeCategory = btn.dataset.cat;
+    filterCards();
+  });
+});
+
+searchInput.addEventListener('input', () => {
+  searchQuery = searchInput.value.toLowerCase();
+  filterCards();
+});
+
+productCount.textContent = `${products.length} ürün`;
+
 function openModal(p) {
   document.getElementById('modalImg').src = p.thumb;
   document.getElementById('modalCategory').textContent = p.category;
+  document.getElementById('modalStars').textContent = starsHtml(p.rating) + ' ' + p.rating;
   document.getElementById('modalName').textContent = p.name;
   document.getElementById('modalDesc').textContent = p.desc;
   document.getElementById('modalWatch').href = p.video;
   document.getElementById('modalBuy').href = p.buy;
   document.getElementById('modalSpecs').innerHTML = p.details.map(([k,v])=>`
-    <div class="spec-row">
-      <div class="spec-key">${k}</div>
-      <div class="spec-val">${v}</div>
-    </div>
+    <div class="spec-row"><div class="spec-key">${k}</div><div class="spec-val">${v}</div></div>
   `).join('');
   overlay.classList.add('active');
   document.body.style.overflow = 'hidden';
