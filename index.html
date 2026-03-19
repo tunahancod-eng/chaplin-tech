@@ -25,10 +25,32 @@
     header { position: sticky; top: 0; z-index: 100; background: rgba(10,10,15,0.85); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); padding: 0 2rem; }
     .header-inner { max-width: 1200px; margin: 0 auto; height: 64px; display: flex; align-items: center; justify-content: space-between; }
     .logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; letter-spacing: 2px; background: linear-gradient(90deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .header-links { display: flex; align-items: center; gap: 16px; }
     .yt-link { display: flex; align-items: center; gap: 8px; color: var(--muted); text-decoration: none; font-size: 0.85rem; font-weight: 500; transition: color 0.2s; }
     .yt-link:hover { color: var(--accent); }
     .yt-icon { width: 28px; height: 28px; background: #ff0000; border-radius: 6px; display: flex; align-items: center; justify-content: center; }
     .yt-icon::after { content: '▶'; font-size: 10px; color: white; margin-left: 2px; }
+    .ig-link { display: flex; align-items: center; gap: 8px; color: var(--muted); text-decoration: none; font-size: 0.85rem; font-weight: 500; transition: color 0.2s; }
+    .ig-link:hover { color: #c13584; }
+    .ig-icon { width: 28px; height: 28px; background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 15px; }
+    .about-btn { background: none; border: 1px solid var(--border); color: var(--muted); font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 500; padding: 6px 16px; border-radius: 100px; cursor: pointer; transition: all 0.2s; }
+    .about-btn:hover { border-color: var(--accent); color: var(--accent); }
+    /* ABOUT MODAL */
+    .about-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(10px); z-index: 300; display: flex; align-items: center; justify-content: center; padding: 20px; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
+    .about-overlay.active { opacity: 1; pointer-events: all; }
+    .about-modal { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; width: 100%; max-width: 480px; padding: 36px; position: relative; transform: translateY(30px) scale(0.97); transition: transform 0.3s ease; }
+    .about-overlay.active .about-modal { transform: translateY(0) scale(1); }
+    .about-close { position: absolute; top: 16px; right: 16px; width: 36px; height: 36px; background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 50%; color: var(--muted); font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s; }
+    .about-close:hover { background: rgba(255,0,0,0.3); color: white; }
+    .about-avatar { width: 72px; height: 72px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent2)); display: flex; align-items: center; justify-content: center; font-size: 2rem; margin-bottom: 20px; }
+    .about-name { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; letter-spacing: 2px; margin-bottom: 4px; }
+    .about-handle { color: var(--accent); font-size: 0.85rem; font-weight: 600; margin-bottom: 16px; }
+    .about-desc { color: var(--muted); font-size: 0.92rem; line-height: 1.65; margin-bottom: 28px; }
+    .about-actions { display: flex; gap: 12px; }
+    .about-yt { flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px; background: rgba(255,0,0,0.1); border: 1px solid rgba(255,0,0,0.2); color: #ff4444; text-decoration: none; font-size: 0.85rem; font-weight: 600; padding: 12px; border-radius: 12px; transition: all 0.2s; }
+    .about-yt:hover { background: rgba(255,0,0,0.2); }
+    .about-ig { flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px; background: rgba(193,53,132,0.1); border: 1px solid rgba(193,53,132,0.25); color: #c13584; text-decoration: none; font-size: 0.85rem; font-weight: 600; padding: 12px; border-radius: 12px; transition: all 0.2s; }
+    .about-ig:hover { background: rgba(193,53,132,0.2); }
     .hero { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; padding: 80px 2rem 60px; }
     .hero-tag { display: inline-block; background: rgba(0,245,160,0.1); border: 1px solid rgba(0,245,160,0.2); color: var(--accent); font-size: 0.75rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; padding: 6px 14px; border-radius: 100px; margin-bottom: 24px; }
     .hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem, 8vw, 6rem); line-height: 0.95; letter-spacing: 2px; margin-bottom: 20px; }
@@ -130,12 +152,33 @@
 <header>
   <div class="header-inner">
     <div class="logo">Tunahan Karakuş</div>
-    <a href="https://www.youtube.com/@MrChaplin41" target="_blank" class="yt-link">
-      <div class="yt-icon"></div>
-      YouTube Kanalı
-    </a>
+    <div class="header-links">
+      <button class="about-btn" id="aboutBtn">Hakkımda</button>
+      <a href="https://www.instagram.com/mrumarex/" target="_blank" class="ig-link">
+        <div class="ig-icon">📷</div>
+        Instagram
+      </a>
+      <a href="https://www.youtube.com/@MrChaplin41" target="_blank" class="yt-link">
+        <div class="yt-icon"></div>
+        YouTube Kanalı
+      </a>
+    </div>
   </div>
 </header>
+
+<div class="about-overlay" id="aboutOverlay">
+  <div class="about-modal">
+    <button class="about-close" id="aboutClose">✕</button>
+    <div class="about-avatar">👾</div>
+    <div class="about-name">Tunahan Karakuş</div>
+    <div class="about-handle">@MrChaplin41</div>
+    <div class="about-desc">Yazılım ve grafik tasarım bilgisini içerik üretimine yansıtan bir teknoloji YouTuber'ı. Kanalda uzun format ürün incelemeleri ve kısa yazıcı içerikleri yayınlıyor.</div>
+    <div class="about-actions">
+      <a href="https://www.youtube.com/@MrChaplin41" target="_blank" class="about-yt">▶ YouTube</a>
+      <a href="https://www.instagram.com/mrumarex/" target="_blank" class="about-ig">📷 Instagram</a>
+    </div>
+  </div>
+</div>
 
 <section class="hero">
   <div class="hero-tag">📦 İncelenen Ürünler</div>
@@ -400,7 +443,19 @@ function closeModal() {
 
 document.getElementById('modalClose').addEventListener('click', closeModal);
 overlay.addEventListener('click', e => { if(e.target === overlay) closeModal(); });
-document.addEventListener('keydown', e => { if(e.key === 'Escape') closeModal(); });
+document.addEventListener('keydown', e => { if(e.key === 'Escape') { closeModal(); closeAbout(); } });
+
+const aboutOverlay = document.getElementById('aboutOverlay');
+document.getElementById('aboutBtn').addEventListener('click', () => {
+  aboutOverlay.classList.add('active');
+  document.body.style.overflow = 'hidden';
+});
+function closeAbout() {
+  aboutOverlay.classList.remove('active');
+  document.body.style.overflow = '';
+}
+document.getElementById('aboutClose').addEventListener('click', closeAbout);
+aboutOverlay.addEventListener('click', e => { if(e.target === aboutOverlay) closeAbout(); });
 </script>
 </body>
 </html>
